@@ -559,7 +559,7 @@ class S3FlagTarget(S3Target):
 
     fs = None
 
-    def __init__(self, path, format=None, client=None, flag='_SUCCESS'):
+    def __init__(self, path, format=None, client=None, flag='_SUCCESS', **kwargs):
         """
         Initializes a S3FlagTarget.
 
@@ -576,7 +576,7 @@ class S3FlagTarget(S3Target):
         if path[-1] != "/":
             raise ValueError("S3FlagTarget requires the path to be to a "
                              "directory.  It must end with a slash ( / ).")
-        super(S3FlagTarget, self).__init__(path)
+        super(S3FlagTarget, self).__init__(path, **kwargs)
         self.format = format
         self.fs = client or S3Client()
         self.flag = flag
